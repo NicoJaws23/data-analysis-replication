@@ -4,23 +4,24 @@ format: html
 editor: visual
 ---
 
-## Quarto
+## Methods from LaBarge et al. 2002
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Daily Covariates set to 24 hour lag (except for food availability and rainfall)
 
-## Running Code
+Compared 4 basic model types against a minimal model, included information on time of collection to offset changes, time from collection to extraction, total time extract was stored before transport (included in all models)
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Model 1: Fruit, seed, and leaf availaility as fixed effects.
 
-```{r}
-1 + 1
-```
+Model 2: Lowest and highest daily (24hour) temp
 
-You can add options to executable code like this
+Model 3: Interaction between rainfall and season
 
-```{r}
-#| echo: false
-2 * 2
-```
+Model 4: Fixed effect for whether the group had been followed the previous day (binary yes or no)
 
-The `echo: false` option disables the printing of code (only output is displayed).
+Each model included individual ID as a random intercept, compared models with and without random slopes to allow for variation between individuals. Resulted in 8 total models for 4 distinct hypotheses and a 9th minimal model.
+
+Used models with Skew Normal Distributions and log links run in the stan computational environment, accessed through {brms}
+
+All models used default Student-t priors (df = 3, mean = 0, scaling factor = 10)
+
+Used Pareto smoothed importance samling leave-one-out-cross-validation to compare candidate models
