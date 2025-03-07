@@ -6,7 +6,7 @@ editor: visual
 
 ## Methods from LaBarge et al. 2002
 
-FCM = Fecal Cortisol Metabolite Levels
+FCM = Fecal Cortisol Metabolite Levels (y value)
 
 Species: Samango Monkeys (*Cercopithecus albogularis*)
 
