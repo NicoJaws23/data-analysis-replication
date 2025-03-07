@@ -6,6 +6,10 @@ editor: visual
 
 ## Methods from LaBarge et al. 2002
 
+FCM = Fecal Cortisol Metabolite Levels
+
+Species: Samango Monkeys (*Cercopithecus albogularis*)
+
 Daily Covariates set to 24 hour lag (except for food availability and rainfall)
 
 Compared 4 basic model types against a minimal model, included information on time of collection to offset changes, time from collection to extraction, total time extract was stored before transport (included in all models)
@@ -25,3 +29,23 @@ Used models with Skew Normal Distributions and log links run in the stan computa
 All models used default Student-t priors (df = 3, mean = 0, scaling factor = 10)
 
 Used Pareto smoothed importance samling leave-one-out-cross-validation to compare candidate models
+
+Then asked if external evens such as IGEs or predations are associated with FCM levels. Used a single model with the same distribution, set the previous days' cumulative incidence of predator alarms and the presence/absence of IGEs as fixed effects. Individual ID was set as random intercepts to account for individual-level responses to each stimulus.
+
+# Results
+
+Random slopes did not improve predictive ability of models
+
+Model 2 had the highest weight, but weight was aso shared with model 1 and 3 to lesser extent.
+
+Model 2: higher min temp was associated with lower FCM levels (est: -0.09, est error: 0.04, 95% CI: -0.16, -0.02)
+
+Model 1: Revealed that among monthly food predictors, only seed availability was assocoiated with FCM levels (est: -0.10, est error: 0.05, 95% CI: -0.22, -0.02)
+
+Model 3: Higher total rainfall per week was associated with lower FCM values, bur only in the dry season (est: -0.40, est error: 0.19, 95% CI: -0.84, -0.08).
+
+Model 4: No support for if group was followed the day before or not
+
+Predators/IGE
+
+With a single observer, number of recorded group-wide antipredator alarms was associated with higher FCM level. Changed with number of observers. 3+ observers saw apparent trend with alarms flattened. PD for interaction term was 98.93%, indicating strong support for the existence of this effect and its highest density interval (HDI) did not contain 0 \[-0.11, -0.02\]. No support for association between intergroup encounters and FCMs of interaction between observers and these encounters.
