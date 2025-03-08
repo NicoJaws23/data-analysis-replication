@@ -37,14 +37,28 @@ FCM_alarm <- ggplot(data = pred, mapping = aes(x = Alarm, y = Concen)) +
   geom_point() +
   facet_wrap("Num.Obs")
 
-#Skew normal dist
-skew_normal()
+#Create Model 0, uses intercept, time of day, and storage time as fixed effects
+M0lm <- lm(Concen ~ time + hrs_prior_extr, data = df)
+summary(M0lm)
+ci <- confint(M0lm)
 
-#Model 0
+library(brms)
 
+# Define your formula for the minimal model (M0)
+# Assuming your dependent variable is hormone concentration and you have the covariates time_of_sample, time_from_collection, and time_from_extraction
+# Including individual as random intercepts
 
-#Food as fixed effects
-#Random intercept set to individual ID, +1/indiv id, look at brm documentation
-food <- brm(Concen ~ Fruit.Avail + Leaf.Avail + Seed.Avail + (1 | ID), data = df, family = skew_normal())
-summary(food)
-plot(food)
+formula_m0 <- bf(Concen ~ time + hrs_prior_extr + (1|ID))
+
+# Define the prior distribution (default student-t priors and half student-t for random effects SD)
+priors <- c(
+  prior(student_t(3, 0, 10), class = "b"),  # Priors for fixed effects (beta coefficients)
+  prior(student_t(3, 0, 10), class = "Intercept"),  # Prior for the intercept
+  prior(student_t(3, 0, 10), class = "sd")  # Half student-t prior for random effects SD (for positive SDs)
+)
+
+# Fit the model
+fit_m0 <- brm(formula_m0, data = df, family = skew_normal(link = "log"), prior = priors)
+
+# Check the model output
+summary(fit_m0)

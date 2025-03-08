@@ -1,0 +1,11 @@
+,prior,class,coef,group,resp,dpar,nlpar,lb,ub,source
+1,"normal(0, 4)",alpha,,,,,,,,default
+2,,b,,,,,,,,default
+3,,b,Fruit.Avail,,,,,,,default
+4,,b,Leaf.Avail,,,,,,,default
+5,,b,Seed.Avail,,,,,,,default
+6,"student_t(3, 20.8, 10.7)",Intercept,,,,,,,,default
+7,"student_t(3, 0, 10.7)",sd,,,,,,0,,default
+8,,sd,,ID,,,,,,default
+9,,sd,Intercept,ID,,,,,,default
+10,"student_t(3, 0, 10.7)",sigma,,,,,,0,,default
